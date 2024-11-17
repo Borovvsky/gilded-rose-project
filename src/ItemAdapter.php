@@ -21,11 +21,6 @@ class ItemAdapter implements UpdateableItem
 
     private function getUpdater(): UpdateableItem
     {
-        return match ($this->item->name) {
-            'Aged Brie' => new AgedBrieUpdater($this),
-            'Backstage passes to a TAFKAL80ETC concert' => new BackstagePassesUpdater($this),
-            'Sulfuras, Hand of Ragnaros' => new SulfurasUpdater($this),
-            default => new DefaultUpdater($this),
-        };
+        return UpdaterFactory::create($this);
     }
 }
